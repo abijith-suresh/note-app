@@ -50,7 +50,7 @@ function sanitizeAttributes(html: string) {
     /(href|src)="([^"]*)"/gi,
     (_match, attribute: "href" | "src", value: string) => {
       return sanitizeUrlAttribute(attribute, value);
-    },
+    }
   );
 }
 

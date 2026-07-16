@@ -1,20 +1,19 @@
+import { defaultKeymap, history, historyKeymap } from "@codemirror/commands";
 import { markdown } from "@codemirror/lang-markdown";
-import { GFM } from "@lezer/markdown";
-import { history, defaultKeymap, historyKeymap } from "@codemirror/commands";
-import { keymap, placeholder, EditorView } from "@codemirror/view";
 import type { Extension } from "@codemirror/state";
-
-import { interleafTheme } from "./theme";
-import { interleafSyntaxHighlighting } from "./syntax";
-import { toggleBold, toggleItalic, insertLink } from "./utils/commands";
-import { renderHeadings } from "./decorations/headings";
+import { EditorView, keymap, placeholder } from "@codemirror/view";
+import { GFM } from "@lezer/markdown";
+import { renderBlockquotes } from "./decorations/blockquotes";
+import { renderCodeBlocks } from "./decorations/code-blocks";
 import { renderEmphasis } from "./decorations/emphasis";
+import { renderHeadings } from "./decorations/headings";
+import { renderHorizontalRules } from "./decorations/hr";
 import { renderInlineCode } from "./decorations/inline-code";
 import { renderLinks } from "./decorations/links";
-import { renderHorizontalRules } from "./decorations/hr";
-import { renderBlockquotes } from "./decorations/blockquotes";
 import { renderLists } from "./decorations/lists";
-import { renderCodeBlocks } from "./decorations/code-blocks";
+import { interleafSyntaxHighlighting } from "./syntax";
+import { interleafTheme } from "./theme";
+import { insertLink, toggleBold, toggleItalic } from "./utils/commands";
 
 export interface InterleafExtensionOptions {
   onChange: (value: string) => void;
@@ -24,9 +23,7 @@ export interface InterleafExtensionOptions {
  * Assembles all CodeMirror extensions for the interleaf markdown editor.
  * Returns a flat Extension array ready to pass to EditorState.create().
  */
-export function createInterleafExtensions(
-  opts: InterleafExtensionOptions,
-): Extension[] {
+export function createInterleafExtensions(opts: InterleafExtensionOptions): Extension[] {
   return [
     // ── Language & parsing ────────────────────────────────────────────────
     markdown({ extensions: [GFM] }),

@@ -1,11 +1,4 @@
-import {
-  createEffect,
-  createMemo,
-  createSignal,
-  on,
-  onCleanup,
-  Show,
-} from "solid-js";
+import { createEffect, createMemo, createSignal, on, onCleanup, Show } from "solid-js";
 
 import CodeMirrorEditor from "@/components/CodeMirrorEditor";
 import type { NoteRecord } from "@/types/note";
@@ -49,8 +42,8 @@ export default function Editor(props: EditorProps) {
           void flushPendingSave();
         }
         setDraft(props.note?.body ?? "");
-      },
-    ),
+      }
+    )
   );
 
   // Debounced save — fires 500 ms after the last keystroke.

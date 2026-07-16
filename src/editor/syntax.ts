@@ -37,6 +37,4 @@ export const interleafHighlightStyle = HighlightStyle.define([
   { tag: tags.contentSeparator, class: "cm-formatting" }, // --- hr
 ]);
 
-export const interleafSyntaxHighlighting = syntaxHighlighting(
-  interleafHighlightStyle,
-);
+export const interleafSyntaxHighlighting = syntaxHighlighting(interleafHighlightStyle);

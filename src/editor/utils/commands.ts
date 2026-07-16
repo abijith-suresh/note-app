@@ -1,5 +1,5 @@
-import type { Command } from "@codemirror/view";
 import { EditorSelection } from "@codemirror/state";
+import type { Command } from "@codemirror/view";
 
 /**
  * Expands a cursor position (from === to) to the word boundaries on that line.
@@ -9,7 +9,7 @@ import { EditorSelection } from "@codemirror/state";
 function expandToWord(
   state: Parameters<Command>[0]["state"],
   from: number,
-  to: number,
+  to: number
 ): { from: number; to: number } {
   if (from !== to) return { from, to };
 
@@ -48,8 +48,7 @@ function toggleInlineMarker(marker: string): Command {
 
       // ── Case A: markers sit just outside the current selection ────────────
       const before = from >= len ? state.sliceDoc(from - len, from) : "";
-      const after =
-        to + len <= state.doc.length ? state.sliceDoc(to, to + len) : "";
+      const after = to + len <= state.doc.length ? state.sliceDoc(to, to + len) : "";
 
       if (before === marker && after === marker) {
         return {
@@ -84,9 +83,7 @@ function toggleInlineMarker(marker: string): Command {
       };
     });
 
-    dispatch(
-      state.update(changes, { scrollIntoView: true, userEvent: "input" }),
-    );
+    dispatch(state.update(changes, { scrollIntoView: true, userEvent: "input" }));
     return true;
   };
 }

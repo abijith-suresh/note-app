@@ -1,7 +1,7 @@
+import { HiOutlineMoon, HiOutlineSun } from "solid-icons/hi";
 import type { JSX } from "solid-js";
-import { HiOutlineSun, HiOutlineMoon } from "solid-icons/hi";
-import SiteFooter from "./SiteFooter";
 import { toggleTheme, useUi } from "@/stores/ui";
+import SiteFooter from "./SiteFooter";
 
 type SimplePageProps = {
   title: string;
@@ -26,10 +26,7 @@ export default function SimplePage(props: SimplePageProps) {
 
         {/* Center: wordmark */}
         <div class="absolute left-1/2 -translate-x-1/2">
-          <a
-            href="/"
-            class="font-serif text-lg italic font-normal text-text-primary"
-          >
+          <a href="/" class="font-serif text-lg italic font-normal text-text-primary">
             interleaf
           </a>
         </div>

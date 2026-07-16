@@ -1,7 +1,7 @@
 import { For } from "solid-js";
 import SimplePage from "@/components/SimplePage";
-import { appMeta } from "@/utils/meta";
 import { parseChangelog } from "@/utils/changelog";
+import { appMeta } from "@/utils/meta";
 import rawChangelog from "../../CHANGELOG.md?raw";
 
 const entries = parseChangelog(rawChangelog);
@@ -12,8 +12,7 @@ export default function Changelog() {
   return (
     <SimplePage title="Changelog">
       <p class="mb-2 text-text-secondary">
-        All notable changes to interleaf are documented below. This project
-        follows{" "}
+        All notable changes to interleaf are documented below. This project follows{" "}
         <a
           href="https://keepachangelog.com/en/1.1.0/"
           target="_blank"
@@ -33,18 +32,14 @@ export default function Changelog() {
         </a>
         .
       </p>
-      <p class="mb-8 text-sm text-text-tertiary">
-        Current version: v{appMeta.version}
-      </p>
+      <p class="mb-8 text-sm text-text-tertiary">Current version: v{appMeta.version}</p>
 
       <div class="divide-y divide-border">
         <For each={entries}>
           {(entry) => (
             <section class="py-8 first:pt-0 last:pb-0">
               <div class="mb-4 flex items-baseline gap-3">
-                <h2 class="font-serif text-lg font-normal text-text-primary">
-                  v{entry.version}
-                </h2>
+                <h2 class="font-serif text-lg font-normal text-text-primary">v{entry.version}</h2>
                 <span class="text-sm text-text-tertiary">{entry.date}</span>
                 {entry.version === appMeta.version && (
                   <span class="rounded-sm bg-accent-subtle px-2 py-0.5 text-xs font-medium text-accent">

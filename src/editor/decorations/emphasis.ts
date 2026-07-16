@@ -1,12 +1,12 @@
+import { syntaxTree } from "@codemirror/language";
+import type { Range } from "@codemirror/state";
 import {
   Decoration,
   type DecorationSet,
-  EditorView,
+  type EditorView,
   ViewPlugin,
   type ViewUpdate,
 } from "@codemirror/view";
-import { syntaxTree } from "@codemirror/language";
-import type { Range } from "@codemirror/state";
 import { lineContainsCursor } from "../utils/cursor";
 
 /**
@@ -27,18 +27,13 @@ function buildEmphasisDecorations(view: EditorView): DecorationSet {
       to,
       enter(node) {
         const name = node.name;
-        if (
-          name !== "StrongEmphasis" &&
-          name !== "Emphasis" &&
-          name !== "Strikethrough"
-        ) {
+        if (name !== "StrongEmphasis" && name !== "Emphasis" && name !== "Strikethrough") {
           return;
         }
 
         if (lineContainsCursor(view.state, node.from, node.to)) return;
 
-        const markName =
-          name === "Strikethrough" ? "StrikethroughMark" : "EmphasisMark";
+        const markName = name === "Strikethrough" ? "StrikethroughMark" : "EmphasisMark";
         const marks = node.node.getChildren(markName);
         for (const mark of marks) {
           widgets.push(hiddenDeco.range(mark.from, mark.to));
@@ -62,5 +57,5 @@ export const renderEmphasis = ViewPlugin.fromClass(
       }
     }
   },
-  { decorations: (v) => v.decorations },
+  { decorations: (v) => v.decorations }
 );

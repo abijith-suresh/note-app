@@ -9,11 +9,7 @@ import type { EditorState } from "@codemirror/state";
  * Handles multi-line nodes (e.g. fenced code blocks) by checking whether the
  * cursor's line falls anywhere within the node's span.
  */
-export function lineContainsCursor(
-  state: EditorState,
-  from: number,
-  to: number,
-): boolean {
+export function lineContainsCursor(state: EditorState, from: number, to: number): boolean {
   const cursorPos = state.selection.main.head;
   const cursorLine = state.doc.lineAt(cursorPos);
   // The cursor line overlaps the node if the line starts before the node ends

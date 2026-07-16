@@ -1,12 +1,7 @@
-import {
-  WidgetType,
-  Decoration,
-  type DecorationSet,
-  EditorView,
-} from "@codemirror/view";
-import { StateField } from "@codemirror/state";
-import type { Range } from "@codemirror/state";
 import { syntaxTree } from "@codemirror/language";
+import type { Range } from "@codemirror/state";
+import { StateField } from "@codemirror/state";
+import { Decoration, type DecorationSet, EditorView, WidgetType } from "@codemirror/view";
 import { lineContainsCursor } from "../utils/cursor";
 
 /**
@@ -39,7 +34,7 @@ export const renderHorizontalRules = StateField.define<DecorationSet>({
   create(state) {
     return buildHrDecorations(state);
   },
-  update(deco, tr) {
+  update(_deco, tr) {
     return buildHrDecorations(tr.state);
   },
   provide: (f) => EditorView.decorations.from(f),
@@ -57,7 +52,7 @@ function buildHrDecorations(state: EditorView["state"]): DecorationSet {
         Decoration.replace({
           widget: new HrWidget(),
           block: true,
-        }).range(node.from, node.to),
+        }).range(node.from, node.to)
       );
     },
   });

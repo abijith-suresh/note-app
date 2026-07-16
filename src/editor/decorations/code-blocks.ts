@@ -1,12 +1,12 @@
+import { syntaxTree } from "@codemirror/language";
+import type { Range } from "@codemirror/state";
 import {
   Decoration,
   type DecorationSet,
-  EditorView,
+  type EditorView,
   ViewPlugin,
   type ViewUpdate,
 } from "@codemirror/view";
-import { syntaxTree } from "@codemirror/language";
-import type { Range } from "@codemirror/state";
 import { lineContainsCursor } from "../utils/cursor";
 
 /**
@@ -30,19 +30,13 @@ function buildCodeBlockDecorations(view: EditorView): DecorationSet {
       enter(node) {
         if (node.name !== "FencedCode") return;
 
-        const cursorInBlock = lineContainsCursor(
-          view.state,
-          node.from,
-          node.to,
-        );
+        const cursorInBlock = lineContainsCursor(view.state, node.from, node.to);
 
         // 1. Apply line class to every line of the code block
         let pos = node.from;
         while (pos <= node.to) {
           const line = view.state.doc.lineAt(pos);
-          widgets.push(
-            Decoration.line({ class: "cm-code-block-line" }).range(line.from),
-          );
+          widgets.push(Decoration.line({ class: "cm-code-block-line" }).range(line.from));
           if (line.to >= node.to) break;
           pos = line.to + 1;
         }
@@ -82,5 +76,5 @@ export const renderCodeBlocks = ViewPlugin.fromClass(
       }
     }
   },
-  { decorations: (v) => v.decorations },
+  { decorations: (v) => v.decorations }
 );

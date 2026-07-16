@@ -1,13 +1,13 @@
+import { syntaxTree } from "@codemirror/language";
+import type { Range } from "@codemirror/state";
 import {
   Decoration,
   type DecorationSet,
-  EditorView,
-  WidgetType,
+  type EditorView,
   ViewPlugin,
   type ViewUpdate,
+  WidgetType,
 } from "@codemirror/view";
-import { syntaxTree } from "@codemirror/language";
-import type { Range } from "@codemirror/state";
 import { lineContainsCursor } from "../utils/cursor";
 
 /**
@@ -62,7 +62,7 @@ function buildListDecorations(view: EditorView): DecorationSet {
           widgets.push(
             Decoration.replace({
               widget: new BulletWidget(indent),
-            }).range(mark.from, mark.to),
+            }).range(mark.from, mark.to)
           );
         }
       },
@@ -84,5 +84,5 @@ export const renderLists = ViewPlugin.fromClass(
       }
     }
   },
-  { decorations: (v) => v.decorations },
+  { decorations: (v) => v.decorations }
 );

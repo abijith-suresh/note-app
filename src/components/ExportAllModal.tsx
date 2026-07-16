@@ -1,4 +1,4 @@
-import { Show, createEffect } from "solid-js";
+import { createEffect, Show } from "solid-js";
 
 import type { NoteExportFormat } from "@/utils/exportNote";
 import { trapFocus } from "@/utils/focusTrap";
@@ -25,10 +25,7 @@ export default function ExportAllModal(props: ExportAllModalProps) {
 
   return (
     <Show when={props.open}>
-      <div
-        class="fixed inset-0 z-50 flex items-center justify-center px-4"
-        role="presentation"
-      >
+      <div class="fixed inset-0 z-50 flex items-center justify-center px-4" role="presentation">
         <div
           ref={dialogRef}
           class="animate-modal-in w-full max-w-[360px] rounded-lg border border-border bg-surface p-5 shadow-lg"
@@ -45,16 +42,10 @@ export default function ExportAllModal(props: ExportAllModalProps) {
             }
           }}
         >
-          <h2
-            id="export-all-modal-title"
-            class="text-base font-medium text-text-primary"
-          >
+          <h2 id="export-all-modal-title" class="text-base font-medium text-text-primary">
             Export all notes
           </h2>
-          <p
-            id="export-all-modal-description"
-            class="mt-2 text-sm text-text-secondary"
-          >
+          <p id="export-all-modal-description" class="mt-2 text-sm text-text-secondary">
             Download all notes as a zip archive. Choose a format:
           </p>
 
