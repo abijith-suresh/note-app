@@ -7,33 +7,23 @@ const pageLinks = [
 ];
 
 export default function SiteFooter() {
-  const pathname =
-    typeof window !== "undefined" ? window.location.pathname : "";
+  const pathname = typeof window !== "undefined" ? window.location.pathname : "";
 
   return (
     <div class="mx-auto max-w-[680px]">
       {/* Single row: wordmark left, links right */}
       <div class="flex flex-col gap-5 sm:flex-row sm:items-baseline sm:justify-between">
-        <a
-          href="/"
-          class="shrink-0 font-serif italic text-md font-normal text-text-primary"
-        >
+        <a href="/" class="shrink-0 font-serif italic text-md font-normal text-text-primary">
           interleaf
         </a>
 
         <nav class="flex flex-wrap items-baseline gap-x-5 gap-y-2">
           {pageLinks.map((link) => {
-            const isActive =
-              pathname === link.href || pathname === link.href.slice(0, -1);
+            const isActive = pathname === link.href || pathname === link.href.slice(0, -1);
             return isActive ? (
-              <span class="font-sans text-sm font-medium text-text-primary">
-                {link.label}
-              </span>
+              <span class="font-sans text-sm font-medium text-text-primary">{link.label}</span>
             ) : (
-              <a
-                href={link.href}
-                class="link-underline font-sans text-sm text-text-secondary"
-              >
+              <a href={link.href} class="link-underline font-sans text-sm text-text-secondary">
                 {link.label}
               </a>
             );

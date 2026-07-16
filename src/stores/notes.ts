@@ -27,10 +27,7 @@ const [notesState, setNotesState] = createStore<NotesState>({
 });
 
 function createId() {
-  if (
-    typeof crypto !== "undefined" &&
-    typeof crypto.randomUUID === "function"
-  ) {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
 
@@ -159,6 +156,6 @@ export async function removeStoredNote(id: string) {
 
   setNotesState(
     "items",
-    notesState.items.filter((note) => note.id !== id),
+    notesState.items.filter((note) => note.id !== id)
   );
 }

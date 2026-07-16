@@ -24,9 +24,7 @@ export function parseChangelog(markdown: string): ChangelogEntry[] {
 
   for (const line of lines) {
     // Version header: ## [0.1.0] - 2026-04-11
-    const versionMatch = line.match(
-      /^##\s+\[([^\]]+)\]\s*-\s*(\d{4}-\d{2}-\d{2})/,
-    );
+    const versionMatch = line.match(/^##\s+\[([^\]]+)\]\s*-\s*(\d{4}-\d{2}-\d{2})/);
     if (versionMatch) {
       if (currentEntry) {
         entries.push(currentEntry);

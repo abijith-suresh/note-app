@@ -1,6 +1,6 @@
-import { createEffect, on, onCleanup, onMount } from "solid-js";
 import { EditorState } from "@codemirror/state";
 import { EditorView } from "@codemirror/view";
+import { createEffect, on, onCleanup, onMount } from "solid-js";
 import { createInterleafExtensions } from "@/editor";
 
 type CodeMirrorEditorProps = {
@@ -62,8 +62,8 @@ export default function CodeMirrorEditor(props: CodeMirrorEditorProps) {
           selection: { anchor: 0 },
         });
       },
-      { defer: true },
-    ),
+      { defer: true }
+    )
   );
 
   // Forward focus requests from AppShell's focusToken pattern
@@ -76,8 +76,8 @@ export default function CodeMirrorEditor(props: CodeMirrorEditorProps) {
           editorView?.focus();
         });
       },
-      { defer: true },
-    ),
+      { defer: true }
+    )
   );
 
   onCleanup(() => {
@@ -85,11 +85,5 @@ export default function CodeMirrorEditor(props: CodeMirrorEditorProps) {
     editorView = undefined;
   });
 
-  return (
-    <div
-      ref={containerRef}
-      class="min-h-0 flex-1 overflow-y-auto"
-      aria-label="Note editor"
-    />
-  );
+  return <div ref={containerRef} class="min-h-0 flex-1 overflow-y-auto" aria-label="Note editor" />;
 }

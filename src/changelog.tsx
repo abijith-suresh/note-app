@@ -3,8 +3,8 @@ import "@fontsource-variable/outfit";
 import "@fontsource/newsreader/300.css";
 import "@fontsource/newsreader/400.css";
 import "./index.css";
-import Changelog from "./pages/Changelog";
 import { initializeTheme } from "@/stores/ui";
+import Changelog from "./pages/Changelog";
 
 initializeTheme();
 

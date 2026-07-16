@@ -1,14 +1,14 @@
-import { For, Show } from "solid-js";
 import {
-  HiOutlinePlus,
   HiOutlineArrowDownOnSquare,
   HiOutlineInformationCircle,
+  HiOutlinePlus,
   HiOutlineTrash,
 } from "solid-icons/hi";
+import { For, Show } from "solid-js";
 
 import type { NoteRecord } from "@/types/note";
-import { deriveTitle } from "@/utils/deriveTitle";
 import { toLocalDayKey } from "@/utils/dayKey";
+import { deriveTitle } from "@/utils/deriveTitle";
 
 type NoteGroup = {
   dayKey: string;
@@ -40,8 +40,7 @@ function formatDayLabel(dayKey: string) {
   return new Intl.DateTimeFormat(undefined, {
     month: "short",
     day: "numeric",
-    year:
-      date.getFullYear() === new Date().getFullYear() ? undefined : "numeric",
+    year: date.getFullYear() === new Date().getFullYear() ? undefined : "numeric",
   }).format(date);
 }
 
@@ -72,9 +71,7 @@ export default function Sidebar(props: SidebarProps) {
       {/* Backdrop */}
       <div
         class={`fixed inset-0 z-[39] bg-overlay transition-opacity duration-200 ${
-          props.open
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
+          props.open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
         }`}
         onClick={() => props.onClose()}
       />
@@ -87,10 +84,7 @@ export default function Sidebar(props: SidebarProps) {
       >
         {/* Header */}
         <div class="flex items-center justify-between border-b border-border px-4 py-3">
-          <a
-            href="/"
-            class="font-serif text-lg italic font-normal text-text-primary"
-          >
+          <a href="/" class="font-serif text-lg italic font-normal text-text-primary">
             interleaf
           </a>
           <button
@@ -110,14 +104,10 @@ export default function Sidebar(props: SidebarProps) {
         {/* Note list */}
         <div class="flex-1 overflow-y-auto px-2 py-3">
           <Show when={props.isLoading}>
-            <div class="px-2 py-2 text-sm text-text-secondary">
-              Loading notes...
-            </div>
+            <div class="px-2 py-2 text-sm text-text-secondary">Loading notes...</div>
           </Show>
           <Show when={!props.isLoading && props.groups.length === 0}>
-            <div class="px-2 py-2 text-sm text-text-secondary">
-              No notes yet.
-            </div>
+            <div class="px-2 py-2 text-sm text-text-secondary">No notes yet.</div>
           </Show>
           <For each={props.groups}>
             {(group) => (
@@ -146,9 +136,7 @@ export default function Sidebar(props: SidebarProps) {
                               props.onClose();
                             }}
                           >
-                            <span class="truncate">
-                              {deriveTitle(note.body)}
-                            </span>
+                            <span class="truncate">{deriveTitle(note.body)}</span>
                           </button>
 
                           {/* Hover action icons */}
@@ -211,9 +199,7 @@ export default function Sidebar(props: SidebarProps) {
               onClick={() => props.onExportAll()}
             >
               <HiOutlineArrowDownOnSquare size={16} />
-              <span class="text-[10px] font-medium uppercase tracking-wide">
-                export all
-              </span>
+              <span class="text-[10px] font-medium uppercase tracking-wide">export all</span>
             </button>
             <a
               href="/about/"
@@ -221,9 +207,7 @@ export default function Sidebar(props: SidebarProps) {
               class="flex flex-col items-center gap-1 rounded-md px-3 py-2 text-text-tertiary transition-colors duration-150 hover:bg-surface-hover hover:text-accent"
             >
               <HiOutlineInformationCircle size={16} />
-              <span class="text-[10px] font-medium uppercase tracking-wide">
-                about
-              </span>
+              <span class="text-[10px] font-medium uppercase tracking-wide">about</span>
             </a>
           </div>
         </div>

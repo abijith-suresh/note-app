@@ -1,9 +1,9 @@
 import Fuse from "fuse.js";
-import { For, Show, createEffect, createMemo, createSignal } from "solid-js";
+import { createEffect, createMemo, createSignal, For, Show } from "solid-js";
 
 import type { NoteRecord } from "@/types/note";
-import { trapFocus } from "@/utils/focusTrap";
 import { deriveTitle } from "@/utils/deriveTitle";
+import { trapFocus } from "@/utils/focusTrap";
 
 type SearchOverlayProps = {
   open: boolean;
@@ -44,10 +44,7 @@ function createSnippet(body: string, query: string) {
   }
 
   const start = Math.max(0, match.index - 50);
-  const end = Math.min(
-    normalizedBody.length,
-    match.index + match[0].length + 90,
-  );
+  const end = Math.min(normalizedBody.length, match.index + match[0].length + 90);
   const prefix = start > 0 ? "..." : "";
   const suffix = end < normalizedBody.length ? "..." : "";
 
@@ -86,7 +83,7 @@ export default function SearchOverlay(props: SearchOverlayProps) {
         threshold: 0.35,
         ignoreLocation: true,
         minMatchCharLength: 2,
-      }),
+      })
   );
 
   const results = createMemo<SearchResult[]>(() => {
@@ -151,9 +148,7 @@ export default function SearchOverlay(props: SearchOverlayProps) {
 
     if (event.key === "ArrowDown") {
       event.preventDefault();
-      setSelectedIndex((current) =>
-        Math.min(current + 1, Math.max(0, results().length - 1)),
-      );
+      setSelectedIndex((current) => Math.min(current + 1, Math.max(0, results().length - 1)));
       return;
     }
 
@@ -207,11 +202,7 @@ export default function SearchOverlay(props: SearchOverlayProps) {
           <div class="max-h-[420px] overflow-y-auto p-2">
             <Show
               when={results().length > 0}
-              fallback={
-                <div class="px-3 py-6 text-sm text-text-secondary">
-                  No matching notes.
-                </div>
-              }
+              fallback={<div class="px-3 py-6 text-sm text-text-secondary">No matching notes.</div>}
             >
               <For each={results()}>
                 {(result, index) => {
@@ -234,10 +225,7 @@ export default function SearchOverlay(props: SearchOverlayProps) {
                       <span class="mt-1 text-xs leading-relaxed text-text-secondary">
                         <For each={highlightSnippet(result.snippet, query())}>
                           {(part) => (
-                            <Show
-                              when={part.match}
-                              fallback={<span>{part.text}</span>}
-                            >
+                            <Show when={part.match} fallback={<span>{part.text}</span>}>
                               <mark class="bg-transparent font-medium text-text-primary">
                                 {part.text}
                               </mark>

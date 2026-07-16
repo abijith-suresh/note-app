@@ -1,12 +1,12 @@
+import { syntaxTree } from "@codemirror/language";
+import type { Range } from "@codemirror/state";
 import {
   Decoration,
   type DecorationSet,
-  EditorView,
+  type EditorView,
   ViewPlugin,
   type ViewUpdate,
 } from "@codemirror/view";
-import { syntaxTree } from "@codemirror/language";
-import type { Range } from "@codemirror/state";
 import { lineContainsCursor } from "../utils/cursor";
 
 /**
@@ -51,5 +51,5 @@ export const renderInlineCode = ViewPlugin.fromClass(
       }
     }
   },
-  { decorations: (v) => v.decorations },
+  { decorations: (v) => v.decorations }
 );

@@ -1,13 +1,13 @@
 import JSZip from "jszip";
-import { createMemo, createSignal, onCleanup, onMount, Show } from "solid-js";
 import {
+  HiOutlineArrowDownOnSquare,
   HiOutlineBars3,
+  HiOutlineMagnifyingGlass,
+  HiOutlineMoon,
   HiOutlinePlus,
   HiOutlineSun,
-  HiOutlineMoon,
-  HiOutlineMagnifyingGlass,
-  HiOutlineArrowDownOnSquare,
 } from "solid-icons/hi";
+import { createMemo, createSignal, onCleanup, onMount, Show } from "solid-js";
 
 import DeleteModal from "@/components/DeleteModal";
 import Editor from "@/components/Editor";
@@ -23,12 +23,12 @@ import {
   useNotes,
 } from "@/stores/notes";
 import {
-  closeNoteActionsMenu,
   closeDeleteModal,
+  closeNoteActionsMenu,
   closeSidebar,
   closeTransientUi,
-  openNoteActionsMenu,
   openDeleteModal,
+  openNoteActionsMenu,
   setActiveNote,
   setOverlay,
   toggleSidebar,
@@ -36,10 +36,10 @@ import {
   useUi,
 } from "@/stores/ui";
 import {
-  type NoteExportFormat,
   exportNote,
   formatDateStamp,
   getDedupedExportFilename,
+  type NoteExportFormat,
 } from "@/utils/exportNote";
 
 export default function AppShell() {
@@ -48,9 +48,7 @@ export default function AppShell() {
   const [focusToken, setFocusToken] = createSignal(0);
   const [isBootstrapping, setIsBootstrapping] = createSignal(true);
 
-  const notesById = createMemo(
-    () => new Map(notes.items.map((note) => [note.id, note])),
-  );
+  const notesById = createMemo(() => new Map(notes.items.map((note) => [note.id, note])));
   const noteGroups = createMemo(() => groupNotesByDay(notes.items));
   const activeNote = createMemo(() => {
     const activeNoteId = ui.activeNoteId;
@@ -65,7 +63,7 @@ export default function AppShell() {
     return noteId ? notesById().get(noteId) : undefined;
   });
   const hasModalOverlay = createMemo(
-    () => ui.deleteModal.open || ui.overlays.search || ui.overlays.exportAll,
+    () => ui.deleteModal.open || ui.overlays.search || ui.overlays.exportAll
   );
 
   function requestEditorFocus() {
@@ -202,10 +200,7 @@ export default function AppShell() {
     const usedFilenames = new Set<string>();
 
     for (const note of notes.items) {
-      zip.file(
-        getDedupedExportFilename(note, format, usedFilenames),
-        note.body,
-      );
+      zip.file(getDedupedExportFilename(note, format, usedFilenames), note.body);
     }
 
     const blob = await zip.generateAsync({ type: "blob" });
@@ -335,10 +330,7 @@ export default function AppShell() {
         onExportAll={openExportAllMenu}
       />
 
-      <div
-        class="flex min-h-screen flex-1"
-        aria-hidden={hasModalOverlay() ? "true" : undefined}
-      >
+      <div class="flex min-h-screen flex-1" aria-hidden={hasModalOverlay() ? "true" : undefined}>
         <main class="flex min-w-0 flex-1 flex-col bg-bg">
           {/* Top bar */}
           <header class="relative flex h-10 shrink-0 items-center border-b border-border bg-surface px-4">
@@ -354,10 +346,7 @@ export default function AppShell() {
 
             {/* Center: wordmark — absolutely centered */}
             <div class="absolute left-1/2 -translate-x-1/2">
-              <a
-                href="/"
-                class="font-serif text-lg italic font-normal text-text-primary"
-              >
+              <a href="/" class="font-serif text-lg italic font-normal text-text-primary">
                 interleaf
               </a>
             </div>
@@ -418,11 +407,7 @@ export default function AppShell() {
             </div>
           </header>
 
-          <Editor
-            note={activeNote()}
-            focusToken={focusToken()}
-            onSave={handleSave}
-          />
+          <Editor note={activeNote()} focusToken={focusToken()} onSave={handleSave} />
         </main>
       </div>
 
@@ -461,8 +446,7 @@ export default function AppShell() {
         open={ui.deleteModal.open}
         noteTitle={
           deleteNote()
-            ? deleteNote()!.body.trim().split(/\r?\n/)[0]?.slice(0, 40) ||
-              "Untitled note"
+            ? deleteNote()?.body.trim().split(/\r?\n/)[0]?.slice(0, 40) || "Untitled note"
             : "Untitled note"
         }
         onCancel={() => {

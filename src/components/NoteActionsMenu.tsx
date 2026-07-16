@@ -1,7 +1,6 @@
-import { Show, createEffect } from "solid-js";
-
-import { trapFocus, focusFirstDescendant } from "@/utils/focusTrap";
+import { createEffect, Show } from "solid-js";
 import type { NoteExportFormat } from "@/utils/exportNote";
+import { focusFirstDescendant, trapFocus } from "@/utils/focusTrap";
 
 type NoteActionsMenuProps = {
   open: boolean;
@@ -49,14 +48,12 @@ export default function NoteActionsMenu(props: NoteActionsMenuProps) {
           const items = menuRef
             ? Array.from(
                 menuRef.querySelectorAll<HTMLElement>(
-                  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
-                ),
+                  'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+                )
               )
             : [];
 
-          const currentIndex = items.findIndex(
-            (el) => el === document.activeElement,
-          );
+          const currentIndex = items.indexOf(document.activeElement as HTMLElement);
           const nextIndex =
             event.key === "ArrowDown"
               ? (currentIndex + 1) % items.length

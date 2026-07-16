@@ -1,15 +1,14 @@
 import { fileURLToPath } from "node:url";
-import { defineConfig } from "vite";
-import solidPlugin from "vite-plugin-solid";
 import tailwindcss from "@tailwindcss/vite";
-import { VitePWA, type ManifestOptions } from "vite-plugin-pwa";
+import { defineConfig } from "vite";
+import { type ManifestOptions, VitePWA } from "vite-plugin-pwa";
+import solidPlugin from "vite-plugin-solid";
 import pkg from "./package.json";
 
 const appManifest: Partial<ManifestOptions> = {
   name: "interleaf",
   short_name: "interleaf",
-  description:
-    "A local-first notes app for fast writing, search, tabbed notes, and export.",
+  description: "A local-first notes app for fast writing, search, tabbed notes, and export.",
   start_url: "/",
   scope: "/",
   display: "standalone",
@@ -67,17 +66,11 @@ export default defineConfig({
       input: {
         main: fileURLToPath(new URL("./index.html", import.meta.url)),
         about: fileURLToPath(new URL("./about/index.html", import.meta.url)),
-        features: fileURLToPath(
-          new URL("./features/index.html", import.meta.url),
-        ),
-        privacy: fileURLToPath(
-          new URL("./privacy/index.html", import.meta.url),
-        ),
-        changelog: fileURLToPath(
-          new URL("./changelog/index.html", import.meta.url),
-        ),
+        features: fileURLToPath(new URL("./features/index.html", import.meta.url)),
+        privacy: fileURLToPath(new URL("./privacy/index.html", import.meta.url)),
+        changelog: fileURLToPath(new URL("./changelog/index.html", import.meta.url)),
         "keyboard-shortcuts": fileURLToPath(
-          new URL("./keyboard-shortcuts/index.html", import.meta.url),
+          new URL("./keyboard-shortcuts/index.html", import.meta.url)
         ),
       },
     },

@@ -23,17 +23,15 @@ export default function Features() {
   return (
     <SimplePage title="Features">
       <p class="mb-8 text-text-secondary">
-        interleaf is designed around a small set of opinions. Each feature
-        exists to make writing and managing short-lived notes faster and calmer.
+        interleaf is designed around a small set of opinions. Each feature exists to make writing
+        and managing short-lived notes faster and calmer.
       </p>
 
       <div class="divide-y divide-border">
         {features.map((feature, i) => (
           <section class="group rounded-md py-7 transition-colors duration-200 hover:bg-surface-hover first:pt-0 last:pb-0">
             <div class="mb-3 flex items-baseline gap-3">
-              <span class="font-mono text-[11px] text-text-tertiary">
-                0{i + 1}
-              </span>
+              <span class="font-mono text-[11px] text-text-tertiary">0{i + 1}</span>
               <h2 class="font-sans text-[11px] font-medium uppercase tracking-[0.12em] text-text-tertiary">
                 {feature.heading}
               </h2>

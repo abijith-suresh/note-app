@@ -1,12 +1,12 @@
+import { syntaxTree } from "@codemirror/language";
+import type { Range } from "@codemirror/state";
 import {
   Decoration,
   type DecorationSet,
-  EditorView,
+  type EditorView,
   ViewPlugin,
   type ViewUpdate,
 } from "@codemirror/view";
-import { syntaxTree } from "@codemirror/language";
-import type { Range } from "@codemirror/state";
 import { lineContainsCursor } from "../utils/cursor";
 
 /**
@@ -31,7 +31,7 @@ function buildHeadingDecorations(view: EditorView): DecorationSet {
 
         // Determine heading level from node name (ATXHeading1 … ATXHeading6)
         const level = parseInt(node.name.slice(10), 10);
-        if (isNaN(level)) return;
+        if (Number.isNaN(level)) return;
 
         const levelClass = Math.min(level, 4); // h4-h6 share .cm-heading-4
         const line = view.state.doc.lineAt(node.from);
@@ -40,7 +40,7 @@ function buildHeadingDecorations(view: EditorView): DecorationSet {
         widgets.push(
           Decoration.line({
             class: `cm-heading cm-heading-${levelClass}`,
-          }).range(line.from),
+          }).range(line.from)
         );
 
         // 2. Hide the HeaderMark + its trailing space when cursor is elsewhere
@@ -76,5 +76,5 @@ export const renderHeadings = ViewPlugin.fromClass(
       }
     }
   },
-  { decorations: (v) => v.decorations },
+  { decorations: (v) => v.decorations }
 );

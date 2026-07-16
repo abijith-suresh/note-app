@@ -33,11 +33,9 @@ export const interleafTheme = EditorView.theme({
   },
 
   // Text selection
-  "&.cm-focused .cm-selectionBackground, .cm-selectionBackground, ::selection":
-    {
-      backgroundColor:
-        "color-mix(in srgb, var(--color-accent) 18%, transparent) !important",
-    },
+  "&.cm-focused .cm-selectionBackground, .cm-selectionBackground, ::selection": {
+    backgroundColor: "color-mix(in srgb, var(--color-accent) 18%, transparent) !important",
+  },
 
   // Remove the focus ring CM6 adds
   "&.cm-focused": {

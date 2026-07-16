@@ -222,11 +222,7 @@ textarea::placeholder {
 /* underline that slides in from the left on hover.                           */
 
 .link-underline {
-  background-image: linear-gradient(
-    to right,
-    var(--color-accent),
-    var(--color-accent)
-  );
+  background-image: linear-gradient(to right, var(--color-accent), var(--color-accent));
   background-size: 0% 1px;
   background-position: left bottom;
   background-repeat: no-repeat;
@@ -285,13 +281,13 @@ kbd:hover {
 
 /* Reset CM6 chrome */
 .cm-editor {
-  outline: none !important;
+  outline: none;
   background: transparent;
   height: 100%;
 }
 
 .cm-editor.cm-focused {
-  outline: none !important;
+  outline: none;
 }
 
 /* Content area */
@@ -326,20 +322,12 @@ kbd:hover {
 
 /* Active line — very subtle warm tint */
 .cm-activeLine {
-  background-color: color-mix(
-    in srgb,
-    var(--color-accent) 4%,
-    transparent
-  ) !important;
+  background-color: color-mix(in srgb, var(--color-accent) 4%, transparent);
 }
 
 /* Selection */
 .cm-selectionBackground {
-  background-color: color-mix(
-    in srgb,
-    var(--color-accent) 20%,
-    transparent
-  ) !important;
+  background-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
 }
 
 /* ── Headings ──────────────────────────────────────────────────────────────── */
@@ -396,11 +384,7 @@ kbd:hover {
 .cm-link {
   color: var(--color-accent);
   text-decoration: underline;
-  text-decoration-color: color-mix(
-    in srgb,
-    var(--color-accent) 40%,
-    transparent
-  );
+  text-decoration-color: color-mix(in srgb, var(--color-accent) 40%, transparent);
   text-underline-offset: 3px;
 }
 
@@ -444,7 +428,7 @@ kbd:hover {
 /* ── Code blocks ───────────────────────────────────────────────────────────── */
 
 .cm-code-block-line {
-  font-family: var(--font-mono) !important;
+  font-family: var(--font-mono);
   font-size: 0.88em;
   background: var(--color-surface);
   /* Padding is applied per-line, so we get a continuous tinted background */
@@ -491,19 +475,11 @@ kbd:hover {
   }
 
   .cm-activeLine {
-    background-color: color-mix(
-      in srgb,
-      var(--color-accent) 6%,
-      transparent
-    ) !important;
+    background-color: color-mix(in srgb, var(--color-accent) 6%, transparent);
   }
 
   .cm-selectionBackground {
-    background-color: color-mix(
-      in srgb,
-      var(--color-accent) 25%,
-      transparent
-    ) !important;
+    background-color: color-mix(in srgb, var(--color-accent) 25%, transparent);
   }
 
   .cm-monospace {

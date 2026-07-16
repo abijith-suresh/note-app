@@ -39,8 +39,7 @@ export default function KeyboardShortcuts() {
   return (
     <SimplePage title="Keyboard Shortcuts">
       <p class="mb-8 text-text-secondary">
-        interleaf keeps shortcuts focused on combinations that work reliably in
-        the browser.
+        interleaf keeps shortcuts focused on combinations that work reliably in the browser.
       </p>
 
       <div class="divide-y divide-border">
@@ -55,9 +54,7 @@ export default function KeyboardShortcuts() {
                   <div class="w-[160px] shrink-0">
                     <kbd>{shortcut.keys}</kbd>
                   </div>
-                  <span class="text-sm text-text-primary">
-                    {shortcut.description}
-                  </span>
+                  <span class="text-sm text-text-primary">{shortcut.description}</span>
                 </div>
               ))}
             </div>
@@ -67,13 +64,12 @@ export default function KeyboardShortcuts() {
 
       <div class="mt-8 space-y-3 border-t border-border pt-8 text-sm text-text-secondary">
         <p>
-          <kbd>Ctrl+Tab</kbd> and <kbd>Ctrl+Shift+Tab</kbd> are intentionally
-          not supported because browsers commonly reserve them for browser tab
-          switching.
+          <kbd>Ctrl+Tab</kbd> and <kbd>Ctrl+Shift+Tab</kbd> are intentionally not supported because
+          browsers commonly reserve them for browser tab switching.
         </p>
         <p>
-          Use <kbd>Ctrl+PageDown</kbd> and <kbd>Ctrl+PageUp</kbd>, or{" "}
-          <kbd>Alt+[</kbd> and <kbd>Alt+]</kbd>, as the in-app alternatives.
+          Use <kbd>Ctrl+PageDown</kbd> and <kbd>Ctrl+PageUp</kbd>, or <kbd>Alt+[</kbd> and{" "}
+          <kbd>Alt+]</kbd>, as the in-app alternatives.
         </p>
       </div>
     </SimplePage>

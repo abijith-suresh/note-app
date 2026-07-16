@@ -1,4 +1,4 @@
-import { openDB, type DBSchema, type IDBPDatabase } from "idb";
+import { type DBSchema, type IDBPDatabase, openDB } from "idb";
 
 import type { NoteInput, NoteRecord, NoteUpdate } from "@/types/note";
 import { toLocalDayKey } from "@/utils/dayKey";
@@ -21,10 +21,7 @@ interface InterleafDatabase extends DBSchema {
 let databasePromise: Promise<IDBPDatabase<InterleafDatabase>> | undefined;
 
 function createId() {
-  if (
-    typeof crypto !== "undefined" &&
-    typeof crypto.randomUUID === "function"
-  ) {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
     return crypto.randomUUID();
   }
 

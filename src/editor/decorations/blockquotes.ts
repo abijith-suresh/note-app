@@ -1,12 +1,12 @@
+import { syntaxTree } from "@codemirror/language";
+import type { Range } from "@codemirror/state";
 import {
   Decoration,
   type DecorationSet,
-  EditorView,
+  type EditorView,
   ViewPlugin,
   type ViewUpdate,
 } from "@codemirror/view";
-import { syntaxTree } from "@codemirror/language";
-import type { Range } from "@codemirror/state";
 import { lineContainsCursor } from "../utils/cursor";
 
 /**
@@ -36,9 +36,7 @@ function buildBlockquoteDecorations(view: EditorView): DecorationSet {
           const line = view.state.doc.lineAt(mark.from);
 
           // 1. Line decoration — always present for left-border styling
-          widgets.push(
-            Decoration.line({ class: "cm-blockquote-line" }).range(line.from),
-          );
+          widgets.push(Decoration.line({ class: "cm-blockquote-line" }).range(line.from));
 
           // 2. Hide the `> ` marker when cursor is not on this line
           if (!lineContainsCursor(view.state, mark.from, mark.to)) {
@@ -69,5 +67,5 @@ export const renderBlockquotes = ViewPlugin.fromClass(
       }
     }
   },
-  { decorations: (v) => v.decorations },
+  { decorations: (v) => v.decorations }
 );
