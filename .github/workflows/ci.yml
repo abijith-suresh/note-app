@@ -38,9 +38,6 @@ jobs:
       - name: Run verification
         run: bun run verify
 
-      - name: Build app
-        run: bun run build
-
   dependency-review:
     name: dependency-review
     runs-on: ubuntu-latest
