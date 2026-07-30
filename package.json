@@ -53,5 +53,9 @@
     "*.{js,mjs,cjs,jsx,ts,tsx,css,json}": [
       "bunx biome check --write --no-errors-on-unmatched"
     ]
+  },
+  "overrides": {
+    "@codemirror/state": "^6.7.1",
+    "@codemirror/view": "^6.43.6"
   }
 }
