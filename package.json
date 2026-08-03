@@ -21,7 +21,7 @@
     "@codemirror/lang-markdown": "^6.5.1",
     "@codemirror/language": "^6.12.4",
     "@codemirror/state": "^6.7.1",
-    "@codemirror/view": "^6.43.6",
+    "@codemirror/view": "^6.43.7",
     "@fontsource-variable/outfit": "^5.3.0",
     "@fontsource/geist": "^5.3.0",
     "@fontsource/newsreader": "^5.3.0",
@@ -35,7 +35,7 @@
     "solid-js": "^1.9.14"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.5",
+    "@biomejs/biome": "^2.5.6",
     "@commitlint/cli": "^21.2.1",
     "@commitlint/config-conventional": "^21.2.0",
     "@tailwindcss/vite": "^4.3.3",
@@ -47,7 +47,7 @@
     "typescript": "^7.0.2",
     "vite": "^8.2.0",
     "vite-plugin-pwa": "^1.3.0",
-    "vite-plugin-solid": "^2.11.13"
+    "vite-plugin-solid": "^2.11.14"
   },
   "lint-staged": {
     "*.{js,mjs,cjs,jsx,ts,tsx,css,json}": [
