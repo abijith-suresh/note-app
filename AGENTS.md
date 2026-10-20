@@ -1,18 +1,17 @@
-# interleaf — agent brief
-Local-first markdown notes app that runs entirely in the browser; for agents changing this repo.
+# note-app — agent brief
+Local-first markdown notes that live in the browser; for agents changing this repo.
 
 ## The Project
-Core promise: open straight into writing and have notes persist locally with no account, backend, or sync; export (txt / Markdown / ZIP) is the backup path.
-Non-goals: no accounts, cloud sync, collaboration, server-side storage, or AI features; no folders or long-lived knowledge management.
-Status: dormant — no feature work since Aug 2026. Name collision: the git repo is `note-app`, while the product, package, PWA manifest, DB, and release component are all `interleaf`. Do not rename either side without owner sign-off.
+interleaf is a calm scratchpad for short-lived work notes: it opens straight into writing, keeps everything in the browser with no account, backend, or sync, and treats export (txt, Markdown, ZIP) as the backup path. Notes are disposable by design — no folders, backlinks, or long-lived knowledge management. The product name is `interleaf` while the repo is `note-app`; both are intentional, and renaming either is an owner decision.
+Status: dormant — no feature work since Aug 2026.
 
 ## How I Work Here
-- Quality gate: `verify` — run before handoff (`bun run verify` = typecheck + typecheck:node + biome lint + format check). There is no test suite; `verify` plus `bun run build` is the whole gate.
-- Commits: Conventional Commits; types live in commitlint.config.js. Header <=72 chars, no trailing period; Husky enforces via commit-msg, CI enforces PR titles. Squash merges; never commit to main.
-- Package manager is Bun (pin in .bun-version, Node pin in .node-version); scripts live in package.json, there is no separate task runner.
-- Storage is best-effort: when IndexedDB is unavailable the app falls back to in-memory notes and sets `storageError`; never assume a write persisted, and keep the warning banner working (src/stores/notes.ts).
-- All rendered markdown must pass through src/utils/markdown.ts (HTML-escaped, URL allowlist http/https/mailto); never render raw `marked` output.
-- `dayKey` is a local-time `YYYY-MM-DD` and drives sidebar grouping ("Today"); do not switch it to UTC.
+- Commits: Conventional Commits, defined by `commitlint.config.js`; one logical change per PR. Squash merges only; never commit to main.
+- PRs: Conventional Commit titles, focused scope, and merge left to the owner.
+- Verification: run `verify` before handoff; CI owns the full check. Keep any tests you add focused on what you touched.
+- User markdown is untrusted input: keep rendering escaped and URL-allowlisted; never bypass the sanitizer.
+- Storage failure is handled by design: notes fall back to memory with a warning banner. That degradation is intentional, not a bug to "fix" by blocking the editor.
+- `dayKey` is local time on purpose; do not switch it to UTC.
 
 ## Sources of Truth
 | Fact | Where |
@@ -22,13 +21,3 @@ Status: dormant — no feature work since Aug 2026. Name collision: the git repo
 | Commands & deps | package.json |
 | Commit rules | commitlint.config.js |
 Code is the authority; this file never overrides executable truth.
-
-## Getting Around
-- src/components/ — SolidJS UI: AppShell (orchestration, keybindings, overlays), Sidebar, Editor, SearchOverlay, modals.
-- src/editor/ — CodeMirror 6 assembly (index.ts) plus Bear-style markdown decorations in decorations/ and the theme/syntax.
-- src/stores/ — global Solid stores: notes (persistence + storage fallback) and ui (theme, active note, overlays).
-- src/db/ — IndexedDB access via idb, including schema/upgrade logic.
-- src/utils/ — pure helpers: markdown render/sanitize, export filenames and ZIP dedupe, deriveTitle/deriveSlug, dayKey.
-- src/pages/ + about|features|privacy|changelog|keyboard-shortcuts/ — static marketing pages; each directory holds the Vite entry HTML fed by src/<page>.tsx into src/pages/<Page>.tsx.
-- src/types/ — shared types (NoteRecord).
-- vite.config.ts + public/ — multi-entry build, `@` → src alias, and PWA manifest/icons.
