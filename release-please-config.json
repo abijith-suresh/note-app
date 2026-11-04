@@ -3,8 +3,7 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "interleaf",
-      "include-v-in-tag": true
+      "package-name": "note-app"
     }
   }
 }
