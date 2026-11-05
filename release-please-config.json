@@ -3,7 +3,8 @@
   "packages": {
     ".": {
       "release-type": "node",
-      "package-name": "note-app"
+      "package-name": "note-app",
+      "include-component-in-tag": false
     }
   }
 }
